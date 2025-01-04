@@ -5,6 +5,7 @@ def pl_acc(): # accepts the players choice
     elif ply1=="o":
         ply2="x"
     else:
+        print("Enter Valid choice")
         pl_acc() # recall itself function if character other than 'x' or 'o' is enterd 
     return ply1,ply2 #returns players choice
     
@@ -26,7 +27,7 @@ def fill(count,board,player_1,player_2):  #main working of the game
                     if(cd!=2):
                         print("---+---+---")
                     cd+=1
-            row,col=accp(board,player_1,player_2)  # calls accp() to accept row and columnn fom the user
+            row,col=accp(count,board,player_1,player_2)  # calls accp() to accept row and columnn fom the user
             if (board[row][col]=="."):  #checks wheather the positin is occupied or not
                 if(count%2==1):  #gives chance to players one by one
                     board=change(board,row,col,player_1)
@@ -58,15 +59,20 @@ def fill(count,board,player_1,player_2):  #main working of the game
 def change(brad,row,col,ply):  # mark the player's choice
     brad[row][col]=ply
     return brad
-def accp(board,player_1,player_2):   # accepts the row and cloumn by the user
-    row=int(input("Enter the row number --> :"))
-    col=int(input("Enter the column number  :"))
+def accp(count,board,player_1,player_2):   # accepts the row and cloumn by the user
+    if count%2==1:
+        p="player-1"
+    else:
+        p="player-2"
+    row=int(input(f"{p} Enter the row number --> :"))
+    col=int(input(f"{p} Enter the column number  :"))
     if (row>=0 and row<3 and col>=0 and col<3):  # checks the entered row and column are in desired range or not
         return row,col
     
     else:   #executes the row and column is not in the desired range
         print("Enter row and column number from 0 to 2 ")
-        accp(board,player_1,player_2)    #recalls itself if the entered row and column is not in the range
+        accp(count,board,player_1,player_2)    #recalls itself if the entered row and column is not in the range
+        
    
 def win(board):  #checks who is winning
     w="false"
