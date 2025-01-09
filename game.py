@@ -66,8 +66,8 @@ def accp(count,board,player_1,player_2):   # accepts the row and cloumn by the u
         p="player-2"
     row=int(input(f"{p} Enter the row number --> :"))
     col=int(input(f"{p} Enter the column number  :"))
-    if (row>=0 and row<3 and col>=0 and col<3):  # checks the entered row and column are in desired range or not
-        return row,col
+    if (row>=1 and row<4 and col>=1 and col<4):  # checks the entered row and column are in desired range or not
+        return row-1,col-1
     
     else:   #executes the row and column is not in the desired range
         print("Enter row and column number from 0 to 2 ")
